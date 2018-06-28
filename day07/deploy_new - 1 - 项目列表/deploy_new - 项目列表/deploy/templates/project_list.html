@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>项目列表</h1>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>项目名称</th>
+                <th>描述</th>
+                <th>地址</th>
+                <th>关联主机</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in pro_list %}
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.repository}}</td>
+                    <td>
+                        {% for row in item.hosts %}
+                            <span>{{row.hostname}}</span>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
