@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>添加项目</h1>
+    <form method="post" novalidate>
+        {% for field in  form %}
+            <div class="form-group">
+                <label>{{field.label}}</label>
+                {{field}}
+                {{field.errors.0}}
+              </div>
+        {% endfor %}
+      <button type="submit" class="btn btn-primary">添加</button>
+    </form>
+</div>
+{% endblock %}
