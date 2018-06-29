@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Index
 from deploy import db
+from sqlalchemy.orm import relationship
 
 
 class UserInfo(db.Model):
@@ -23,7 +24,7 @@ class Host(db.Model):
     """
     __tablename__ = 'host'
     id = Column(Integer, primary_key=True)
-    hostname = Column(String(32),unique=True)
+    hostname = Column(String(32), unique=True)
     port = Column(Integer)
 
 
@@ -35,9 +36,9 @@ class Project(db.Model):
 
     id = Column(Integer, primary_key=True)
     title = Column(String(32), unique=True)
-    name =  Column(String(32), unique=True)
-    repository =  Column(String(128))
-
+    name = Column(String(32), unique=True)
+    repository = Column(String(128))
+    hosts=relationship('Host',secondary="project_2_host",backref='pros')
 
 class Project2Host(db.Model):
     """
@@ -46,11 +47,11 @@ class Project2Host(db.Model):
     __tablename__ = 'project_2_host'
 
     id = Column(Integer, primary_key=True)
-    project_id = Column(Integer,ForeignKey('project.id'))
-    host_id = Column(Integer,ForeignKey('host.id'))
+    project_id = Column(Integer, ForeignKey('project.id'))
+    host_id = Column(Integer, ForeignKey('host.id'))
 
     __table_args__ = (
-        UniqueConstraint('project_id','host_id',name='uix_project_host'),
+        UniqueConstraint('project_id', 'host_id', name='uix_project_host'),
     )
 
 
@@ -67,25 +68,25 @@ class Deploy(db.Model):
     version = Column(String(32))
 
     status_choices = {
-        1:'未发布',
-        2:'已发布',
+        1: '未发布',
+        2: '已发布',
         3: '发布失败',
         4: '回滚',
     }
-    status_id = Column(Integer,default=1)
+    status_id = Column(Integer, default=1)
 
     deploy_type_choices = {
         1: '代码',
         2: 'SQL',
         3: '静态文件',
     }
-    deploy_type = Column(Integer,default=1)
+    deploy_type = Column(Integer, default=1)
 
     dtime = Column(DateTime)
-    ctime = Column(DateTime,default=datetime.datetime.now)
+    ctime = Column(DateTime, default=datetime.datetime.now)
 
     # 发布之后自动检测
-    ext_path = Column(String(128),nullable=True)
+    ext_path = Column(String(128), nullable=True)
 
 
 class DeployRecord(db.Model):
@@ -101,10 +102,3 @@ class DeployRecord(db.Model):
         2: '失败',
     }
     status_id = Column(Integer, default=1)
-
-
-
-
-
-
-
