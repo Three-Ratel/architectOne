@@ -27,7 +27,7 @@ with app.app_context():
     user2 = models.UserInfo(username='hhw', password='123', nickname='黄宏伟')
 
     pro1 = models.Project(title='公司官网', name='web1', repository='https://github.com/WuPeiqi/dbhot.git')
-    pro1.hosts = [mode ls.Host(hostname='c1.com', port=80), models.Host(hostname='c2.com', port=80)]
+    pro1.hosts = [models.Host(hostname='c1.com', port=80), models.Host(hostname='c2.com', port=80)]
 
     db.session.add_all([
         user1,

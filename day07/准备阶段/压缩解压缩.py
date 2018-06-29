@@ -5,6 +5,12 @@
 
 import zipfile
 
-obj=zipfile.ZipFile('/code/m1/day07/准备阶段/x1.zip',mode='r')
-obj.extractall('/code/m1/day07/准备阶段/m1')
-obj.close()
+# obj=zipfile.ZipFile('/code/m1/day07/准备阶段/x1.zip',mode='r')
+# obj.extractall('/code/m1/day07/准备阶段/m1')
+# obj.close()
+
+import tarfile
+tarfile.TarFile()
+import shutil
+
+shutil._un
