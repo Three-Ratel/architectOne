@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="{{ url_for ('static',filename='plugins/bootstrap/css/bootstrap.css') }}">
 </head>
 <body>
+
 <nav class="navbar navbar-default">
+
     <div class="container-fluid">
+
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
+
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -18,7 +22,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://5.cmsa.cn"><b>ZQ运维平台</b></a>
+
+            <div>
+                <img class="navbar-brand"  src="{{ url_for('static',filename='img/logo4646.jpg') }}" alt="x">
+                <a class="navbar-brand" href="http://5.cmsa.cn"><b>ZQ运维平台</b></a>
+            </div>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,7 +34,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">发布系统 <span class="sr-only">(current)</span></a></li>
                 <li><a href="http://zq.5.cmsa.cn/zbx/">ZBX监控 </a></li>
-                 <li><a href="#">业务报警</a></li>
+                <li><a href="#">业务报警</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">流量图 <span class="caret"></span></a>
